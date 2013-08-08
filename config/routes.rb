@@ -1,4 +1,16 @@
 MoveEx::Application.routes.draw do
+  get 'sign_in' => "sessions#new", as: 'sign_in'
+  get 'log_in'  => "sessions#new", as: 'log_in'
+
+
+  get 'sign_up' => "users#new", as: 'sign_up'
+
+  root :to => 'users#index'
+
+  resources :users
+  resources :sessions
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
