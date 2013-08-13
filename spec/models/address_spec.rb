@@ -12,3 +12,4 @@ describe Address do
   it { should respond_to(:state) }
   it { should respond_to(:postal_code) }
 end
+

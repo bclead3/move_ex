@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :address do
     address_1 "1234 My Street"
     address_2 "Apt. 2C"
-    city "My City"
+    city "Gillette"
     state "WY"
     postal_code "85555"
   end

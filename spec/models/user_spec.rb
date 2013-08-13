@@ -8,6 +8,8 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
+  it { should respond_to(:address) }
+  it { should respond_to(:user_attributes) }
 
   describe "with a password that's too short" do
     before { fact_user.password = fact_user.password_confirmation = "a" * 5 }
@@ -37,6 +39,24 @@ describe User do
       fact_user.email = mixed_case_email
       fact_user.save
       fact_user.reload.email.should == mixed_case_email.downcase
+    end
+  end
+
+  describe "user should have postal address" do
+    it "should have the first address line" do
+      fact_user.address.address_1.should eql("1234 My Street")
+    end
+
+    it "should have the second address line" do
+      fact_user.address.address_2.should eql("Apt. 2C")
+    end
+
+    it "should have a city" do
+      fact_user.address.city.should eql("Gillette")
+    end
+
+    it "should havea state" do
+      fact_user.address.state.should eql("WY")
     end
   end
 end

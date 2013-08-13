@@ -10,5 +10,23 @@
   <%= @user.email %>
 </p>
 
+<dev class='user_address'>
+  <strong>Address:</strong>
+  <%= @user.address.to_s %>
+</dev>
+
+<br/>
+
+<dev class='user_attributes'>
+  <strong>User Attributes:</strong>
+  <ol>
+  <% @user.user_attributes.each do |attribute| %>
+    <li><%= attribute.key %> <%= attribute.value %></li>
+  <% end %>
+  </ol>
+</dev>
+
+<p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</p>
