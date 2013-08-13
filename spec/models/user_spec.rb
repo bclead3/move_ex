@@ -58,5 +58,13 @@ describe User do
     it "should havea state" do
       fact_user.address.state.should eql("WY")
     end
+
+    it "should have a postal code" do
+      fact_user.address.postal_code.should eql("85555")
+    end
+  end
+
+  describe "user should have N key-value pairs" do
+
   end
 end
