@@ -3,11 +3,11 @@ require 'spec_helper'
 describe "users/new" do
   before(:each) do
     assign(:user, stub_model(User,
-      :name => "MyString",
-      :email => "MyString",
-      :password_hash => "MyString",
-      :password_salt => "MyString"
-    ).as_new_record)
+        :name => "Name1",
+        :email => "Email1@mail.com",
+        :password => "ThisIsAPassword",
+        :password_confirmation => "ThisIsAPassword"
+      ).as_new_record)
   end
 
   it "renders new user form" do
@@ -17,8 +17,8 @@ describe "users/new" do
     assert_select "form[action=?][method=?]", users_path, "post" do
       assert_select "input#user_name[name=?]", "user[name]"
       assert_select "input#user_email[name=?]", "user[email]"
-      assert_select "input#user_password_hash[name=?]", "user[password_hash]"
-      assert_select "input#user_password_salt[name=?]", "user[password_salt]"
+      #assert_select "input#user_password_hash[name=?]", "user[password_hash]"
+      #assert_select "input#user_password_salt[name=?]", "user[password_salt]"
     end
   end
 end

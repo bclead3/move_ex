@@ -6,14 +6,14 @@ describe "users/index" do
       stub_model(User,
         :name => "Name",
         :email => "Email",
-        :password_hash => "Password Hash",
-        :password_salt => "Password Salt"
+        :password => "ThisIsAPassword",
+        :password_confirmation => "ThisIsAPassword"
       ),
       stub_model(User,
         :name => "Name",
         :email => "Email",
-        :password_hash => "Password Hash",
-        :password_salt => "Password Salt"
+        :password => "ThisIsAPassword2",
+        :password_confirmation => "ThisIsAPassword2"
       )
     ])
   end
@@ -23,7 +23,5 @@ describe "users/index" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "Email".to_s, :count => 2
-    assert_select "tr>td", :text => "Password Hash".to_s, :count => 2
-    assert_select "tr>td", :text => "Password Salt".to_s, :count => 2
   end
 end
