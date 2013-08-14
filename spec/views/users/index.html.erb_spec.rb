@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe "users/index" do
+  #let(:user) {FactoryGirl.create(:user)}
+  #let(:user2){FactoryGirl.create(:user2)}
+
   before(:each) do
     assign(:users, [
       stub_model(User,
@@ -16,6 +19,7 @@ describe "users/index" do
         :password_confirmation => "ThisIsAPassword2"
       )
     ])
+
   end
 
   it "renders a list of users" do

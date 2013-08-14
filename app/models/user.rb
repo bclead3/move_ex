@@ -13,8 +13,7 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def add_pair(key,value)
-    num_kv_objects = UserAttribute.where( user_id:self.id).count
-    kv_object = UserAttribute.create( user_id:self.id, key:key, value:value, position:(num_kv_objects+1) )
+    kv_object = UserAttribute.create( user_id:self.id, key:key, value:value )
   end
 
   def remove_pair(key)

@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th>Position</th>
       <th>Key</th>
       <th>Value</th>
-      <th>Position</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,11 +13,11 @@
   </thead>
 
   <tbody>
-    <% @attributes.each do |attr| %>
+    <% @attributes.each_with_index do |attr, idx| %>
       <tr>
+        <td><%= idx+1 %></td>
         <td><%= attr.key %></td>
         <td><%= attr.value %></td>
-        <td><%= attr.position %></td>
         <td><%= link_to 'Show', attr %></td>
         <td><%= link_to 'Edit', edit_user_attribute_path(attr) %></td>
         <td><%= link_to 'Delete', attr, method: :delete, data: { confirm: 'Are you sure?' } %></td>

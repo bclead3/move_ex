@@ -17,8 +17,8 @@ describe "users/new" do
     assert_select "form[action=?][method=?]", users_path, "post" do
       assert_select "input#user_name[name=?]", "user[name]"
       assert_select "input#user_email[name=?]", "user[email]"
-      #assert_select "input#user_password_hash[name=?]", "user[password_hash]"
-      #assert_select "input#user_password_salt[name=?]", "user[password_salt]"
+      assert_select "input#user_password[name=?]", "user[password]"
+      assert_select "input#user_password_confirmation[name=?]", "user[password_confirmation]"
     end
   end
 end

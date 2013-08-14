@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130814150804) do
+ActiveRecord::Schema.define(version: 20130814160943) do
 
   create_table "addresses", force: true do |t|
     t.integer  "user_id"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20130814150804) do
 
   create_table "user_attributes", force: true do |t|
     t.integer "user_id"
-    t.integer "position"
     t.string  "key"
     t.string  "value"
   end

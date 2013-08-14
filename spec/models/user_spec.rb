@@ -5,9 +5,13 @@ describe User do
 
   subject { fact_user }
 
+  it { should have_one(:address) }
+  it { should have_many(:user_attributes) }
+
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
+  it { should respond_to(:remember_token) }
   it { should respond_to(:address) }
   it { should respond_to(:user_attributes) }
 
