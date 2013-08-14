@@ -1,6 +1,6 @@
 class UserAttributesController < ApplicationController
-  before_action :set_attribute, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
+  before_action :set_attribute, only: [:show, :edit, :update, :destroy]
 
   def index
     user_id_value = params[:format]
@@ -75,6 +75,6 @@ class UserAttributesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_attribute_params
-    params.require(:user_attribute).permit(:key, :value, :user_id, :position)
+    params.require(:user_attribute).permit(:key, :value, :user_id)
   end
 end
