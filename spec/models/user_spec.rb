@@ -65,6 +65,31 @@ describe User do
   end
 
   describe "user should have N key-value pairs" do
+    it "should have three initial KV objects" do
+      fact_user.user_attributes.count.should eql(3)
+    end
+  end
 
+  describe "adding KV pair" do
+    let(:user2) {FactoryGirl.create(:user2)}
+
+    it "should have two initial KV objects" do
+      user2.user_attributes.count.should eql(2)
+    end
+
+    it "should have three KV objects after calling 'add_pair'" do
+      user2.add_pair("this","that")
+      user2.user_attributes.count.should eql(3)
+      user2.get_value_from_key("this").should eql("that")
+    end
+  end
+
+  describe "removing KV pair" do
+    let(:user2) {FactoryGirl.create(:user2)}
+
+    it "should allow removing KV pair by key" do
+      fred_object = user2.remove_pair("fred")
+      fred_object.value.should eql("The Fred")
+    end
   end
 end

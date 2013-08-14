@@ -1,9 +1,12 @@
-.user_address {
-  margin-left: 100px;
-  float: left;
+table.user_address thead tr th {
+  text-align: left;
 }
 
 .user_attributes {
   margin-left: 100px;
   float: left;
+  position: relative;
+  .kv_pairs {
+    position: absolute;
+  }
 }

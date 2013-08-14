@@ -10,23 +10,55 @@
   <%= @user.email %>
 </p>
 
-<dev class='user_address'>
-  <strong>Address:</strong>
-  <%= @user.address.to_s %>
-</dev>
-
-<br/>
-
-<dev class='user_attributes'>
-  <strong>User Attributes:</strong>
-  <ol>
-  <% @user.user_attributes.each do |attribute| %>
-    <li><%= attribute.key %> <%= attribute.value %></li>
-  <% end %>
-  </ol>
-</dev>
+<p>
+  <table class='user_address'>
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @user.address.to_s %></td>
+        <td>
+          <% unless @user.address.nil? %>
+            <%= link_to 'Edit Address', edit_address_path(@user.address) %>
+          <% else %>
+            <%= link_to 'Add Address', new_address_path(@user) %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</p>
 
 <p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Position</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @user.user_attributes.each do |attribute| %>
+    <tr>
+      <td><%= attribute.key %></td>
+      <td><%= attribute.value %></td>
+      <td><%= attribute.position %></td>
+      <td><%= link_to 'Edit Pair', edit_user_attribute_path(attribute) %></td>
+      <td><%= link_to 'Delete', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Create Key Value Pair', new_user_attribute_path(@user) %>
+</p>
+<p>
+<%= link_to "Edit #{@user.name}", edit_user_path(@user) %> |
+<%= link_to 'Back to Users', users_path %>
 </p>

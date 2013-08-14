@@ -1,0 +1,32 @@
+<h1>User Attributes for <%= @attributes.first.user.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Position</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attributes.each do |attr| %>
+      <tr>
+        <td><%= attr.key %></td>
+        <td><%= attr.value %></td>
+        <td><%= attr.position %></td>
+        <td><%= link_to 'Show', attr %></td>
+        <td><%= link_to 'Edit', edit_user_attribute_path(attr) %></td>
+        <td><%= link_to 'Delete', attr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attribute', new_user_attribute_path(@attributes.first.user) %>
+<%= link_to 'Back to User', user_path(@attributes.first.user) %>

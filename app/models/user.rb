@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_attributes
 
   before_save :email_downcase
+  before_create :create_remember_token
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: { case_sensitive: false }
@@ -16,8 +17,15 @@ class User < ActiveRecord::Base
     kv_object = UserAttribute.create( user_id:self.id, key:key, value:value, position:(num_kv_objects+1) )
   end
 
-  def get_key(key)
-    key_array = UserAttribute.where( user_id: self.id, key: key).first
+  def remove_pair(key)
+    kv_object = UserAttribute.where( user_id:self.id, key:key).first
+    kv_object.user_id = nil
+    kv_object.save
+    kv_object
+  end
+
+  def get_value_from_key(key)
+    UserAttribute.where( user_id: self.id, key: key).first.value
   end
 
   def get_keys
@@ -28,9 +36,14 @@ class User < ActiveRecord::Base
     ! UserAttribute.where( user_id: self.id).empty?
   end
 
-  #def set_email(email)
-  #  self.email = email
-  #end
+  def self.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def self.encrypt( value )
+    Digest::SHA1.hexdigest( value.to_s)
+  end
+
 
   private
 
@@ -38,5 +51,9 @@ class User < ActiveRecord::Base
     if email.present?
       self.email = email.downcase
     end
+  end
+
+  def create_remember_token
+    self.remember_token = User.encrypt(User.new_remember_token)
   end
 end

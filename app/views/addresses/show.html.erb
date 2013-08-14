@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @address.user.name unless @address.user.nil? %>
+</p>
+<p>
+  <strong>Address 1:</strong>
+  <%= @address.address_1 %>
+</p>
+<% unless ( @address.address_2.nil? || @address.address_2.blank? ) %>
+<p>
+  <strong>Address 2:</strong>
+  <%= @address.address_2 %>
+</p>
+<% end %>
+<p>
+  <strong>City:</strong>
+  <%= @address.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @address.state %>
+</p>
+
+<p>
+  <strong>Postal Code:</strong>
+  <%= @address.postal_code %>
+</p>
+
+<p>
+<%= link_to "Edit #{@address.user.name}'s Address", edit_address_path(@address) %> |
+<%= link_to "Back to #{@address.user.name}", user_path(@address.user) %>
+</p>

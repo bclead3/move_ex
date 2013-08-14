@@ -1,0 +1,1 @@
+json.extract! @attribute, :user_id, :key, :value, :position, :created_at, :updated_at
