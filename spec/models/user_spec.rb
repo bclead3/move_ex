@@ -46,6 +46,28 @@ describe User do
     end
   end
 
+  describe "email address formats" do
+    let(:invalid_email_1) { "this_is_no@email" }
+    let(:difficult_but_valid) { "ronald.mcdonald@hopkins.k12.mn.us"}
+    it "should not allow an invalid email" do
+      fact_user.email = invalid_email_1
+      fact_user.save
+      fact_user.should be_invalid
+    end
+
+    it "should allow a valid email format" do
+      fact_user.email = invalid_email_1 + ".uk"
+      fact_user.save
+      fact_user.should be_valid
+    end
+
+    it "should allow a valid .k12.us email format" do
+      fact_user.email = difficult_but_valid
+      fact_user.save
+      fact_user.should be_valid
+    end
+  end
+
   describe "user should have postal address" do
     it "should have the first address line" do
       fact_user.address.address_1.should eql("1234 My Street")
