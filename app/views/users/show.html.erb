@@ -37,19 +37,19 @@
 <table>
   <thead>
     <tr>
+      <th>Position</th>
       <th>Key</th>
       <th>Value</th>
-      <th>Position</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-  <% @user.user_attributes.each do |attribute| %>
+  <% @user.user_attributes.each_with_index do |attribute, idx| %>
     <tr>
+      <td><%= (idx+1).to_s %></td>
       <td><%= attribute.key %></td>
       <td><%= attribute.value %></td>
-      <td><%= attribute.position %></td>
       <td><%= link_to 'Edit Pair', edit_user_attribute_path(attribute) %></td>
       <td><%= link_to 'Delete', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
